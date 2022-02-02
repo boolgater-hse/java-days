@@ -11,10 +11,12 @@ public class Main
 
     public static void testComplex()
     {
+        Random random = new Random();
+
         System.out.print("Complex numbers:\n");
 
-        Complex a = new Complex(1, 2);
-        Complex b = new Complex(3, 4);
+        Complex a = new Complex((double) (random.nextInt(9)) + 1, random.nextInt(8) + 1);
+        Complex b = new Complex((double) (random.nextInt(9)) + 1, random.nextInt(8) + 1);
 
         System.out.println("a = " + a.algebraic());
         System.out.println("b = " + b.algebraic() + "\n");
@@ -64,7 +66,7 @@ public class Main
         {
             for (int j = 0; j < mat.getM(); ++j)
             {
-                mat.set(i, j, new Complex((double) (random.nextInt(9)) + 1, (random.nextInt(2))));
+                mat.set(i, j, new Complex((double) (random.nextInt(9)) + 1, random.nextInt(3)));
             }
         }
         mat.print();
@@ -76,7 +78,7 @@ public class Main
         {
             for (int j = 0; j < mat.getM(); ++j)
             {
-                mat_two.set(i, j, new Complex((double) (random.nextInt(9)) + 1));
+                mat_two.set(i, j, new Complex((double) (random.nextInt(9)) + 1, random.nextInt(2)));
             }
         }
         mat_two.print();
