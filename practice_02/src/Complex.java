@@ -68,11 +68,21 @@ public class Complex
         double tempReal = this.real * other.real + this.unit * other.unit;
         double tempUnit = other.real * this.unit - this.real * other.unit;
 
+        if (d == 0)
+        {
+            return this;
+        }
+
         return new Complex(tempReal / d, tempUnit / d);
     }
 
     public Complex divide(final double other)
     {
+        if (other == 0)
+        {
+            return this;
+        }
+
         return new Complex(this.real / other,
                 this.unit / other);
     }
