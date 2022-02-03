@@ -118,7 +118,8 @@ public class Matrix
 
     private void subMatrix(Matrix mat, Matrix temp, int p, int q, int _n)
     {
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         for (int row = 0; row < _n; ++row)
         {
             for (int col = 0; col < _n; ++col)
