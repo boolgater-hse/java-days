@@ -1,16 +1,13 @@
 import java.util.Random;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
         testComplex();
 
         testMatrix();
     }
 
-    public static void testComplex()
-    {
+    public static void testComplex() {
         Random random = new Random();
 
         System.out.print("Complex numbers:\n");
@@ -56,16 +53,13 @@ public class Main
         System.out.println();
     }
 
-    public static void testMatrix()
-    {
+    public static void testMatrix() {
         Random random = new Random();
 
         System.out.println("Random matrix:");
         Matrix mat = new Matrix(3);
-        for (int i = 0; i < mat.getN(); ++i)
-        {
-            for (int j = 0; j < mat.getM(); ++j)
-            {
+        for (int i = 0; i < mat.getN(); ++i) {
+            for (int j = 0; j < mat.getM(); ++j) {
                 mat.set(i, j, new Complex((double) (random.nextInt(9)) + 1, random.nextInt(3)));
             }
         }
@@ -74,10 +68,8 @@ public class Main
 
         System.out.println("Second random matrix:");
         Matrix mat_two = new Matrix(3);
-        for (int i = 0; i < mat.getN(); ++i)
-        {
-            for (int j = 0; j < mat.getM(); ++j)
-            {
+        for (int i = 0; i < mat.getN(); ++i) {
+            for (int j = 0; j < mat.getM(); ++j) {
                 mat_two.set(i, j, new Complex((double) (random.nextInt(9)) + 1, random.nextInt(2)));
             }
         }
