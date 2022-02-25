@@ -1,6 +1,7 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 public class Person {
     private final String surname;
@@ -35,7 +36,9 @@ public class Person {
     }
 
     public String getShortName() {
-        return surname + " " + name.charAt(0) + ". " + middle.charAt(0) + ".";
+        return surname.substring(0, 1).toUpperCase() + surname.substring(1) + " "
+                + Character.toUpperCase(name.charAt(0)) + ". "
+                + Character.toUpperCase(middle.charAt(0)) + ".";
     }
 
     public String getGender() throws Exception {
