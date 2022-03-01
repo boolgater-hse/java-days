@@ -86,11 +86,11 @@ public class Person {
         daysBeforeNow += countLeapYears(current);
 
         final double oneDayInYears = 0.002738;
-        int temp = (int) ((daysBeforeNow - daysBeforeBirth) * oneDayInYears);
+        double temp = ((daysBeforeNow - daysBeforeBirth) * oneDayInYears);
         if (temp < 0) {
             throw new DateTimeException("Date of birth is greater than current date");
         }
 
-        return temp;
+        return (int) temp;
     }
 }
