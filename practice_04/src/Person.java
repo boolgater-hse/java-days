@@ -1,7 +1,5 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 
 public class Person {
     private final String surname;
@@ -12,7 +10,7 @@ public class Person {
 
     Person(String[] data) throws Exception {
         String regexIllegalSymbols = ".*[^а-яА-Я].*";
-        String regexSplitters = "[\\.\\-/\\\\]";
+        String regexSplitters = "[\\.\\/\\\\]";
         String[] splintedDate;
 
         try {
@@ -60,10 +58,35 @@ public class Person {
         throw new Exception("Gender is undefined");
     }
 
+    private int countLeapYears(LocalDate date) {
+        int years = date.getYear();
+
+        if (date.getMonthValue() <= 2) {
+            years--;
+        }
+
+        return years / 4 - years / 100 + years / 400;
+    }
+
     public int getAge() {
         LocalDate current = LocalDate.now();
 
-        int temp = (int) ChronoUnit.YEARS.between(dateOfBirth, current);
+        int[] daysInMonths = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        int daysBeforeBirth = dateOfBirth.getYear() * 365 + dateOfBirth.getDayOfMonth();
+        for (int i = 0; i < dateOfBirth.getMonthValue() - 1; ++i) {
+            daysBeforeBirth += daysInMonths[i];
+        }
+        daysBeforeBirth += countLeapYears(dateOfBirth);
+
+        int daysBeforeNow = current.getYear() * 365 + current.getDayOfMonth();
+        for (int i = 0; i < current.getMonthValue() - 1; ++i) {
+            daysBeforeNow += daysInMonths[i];
+        }
+        daysBeforeNow += countLeapYears(current);
+
+        final double oneDayInYears = 0.002738;
+        int temp = (int) ((daysBeforeNow - daysBeforeBirth) * oneDayInYears);
         if (temp < 0) {
             throw new DateTimeException("Date of birth is greater than current date");
         }
