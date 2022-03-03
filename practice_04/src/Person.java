@@ -8,6 +8,16 @@ public class Person {
 
     private final LocalDate dateOfBirth;
 
+    /**
+     * Constructor of 'Person' class takes String array
+     * with splinted surname, name, middle name and birthdate
+     * of a person.
+     * Name must be written in Russian.
+     * Birthdate supports '.', '/' and '\' separators.
+     *
+     * @param data String array
+     * @throws Exception throws when input is incorrect
+     */
     Person(String[] data) throws Exception {
         String regexIllegalSymbols = ".*[^а-яА-Я].*";
         String regexSplitters = "[\\.\\/\\\\]";
@@ -33,12 +43,23 @@ public class Person {
         }
     }
 
+    /**
+     * Returns short name of a person in format Surname (N.)ame (M.)iddle name
+     *
+     * @return String
+     */
     public String getShortName() {
         return surname.substring(0, 1).toUpperCase() + surname.substring(1) + " "
                 + Character.toUpperCase(name.charAt(0)) + ". "
                 + Character.toUpperCase(middle.charAt(0)) + ".";
     }
 
+    /**
+     * Return gender of a person or 'undefined' when gender cannot be determined.
+     *
+     * @return String
+     * @throws Exception throws when gender of a person cannot be determined
+     */
     public String getGender() throws Exception {
         String[] femaleEndings = new String[]{"овна", "евна", "ична", "инична"};
         String[] maleEndings = new String[]{"ович", "евич", "ич"};
@@ -58,6 +79,12 @@ public class Person {
         throw new Exception("Gender is undefined");
     }
 
+    /**
+     * Help function for getAge()
+     * Counts number of leap years to 'date'.
+     *
+     * @return int
+     */
     private int countLeapYears(LocalDate date) {
         int years = date.getYear();
 
@@ -68,6 +95,11 @@ public class Person {
         return years / 4 - years / 100 + years / 400;
     }
 
+    /**
+     * Returns age of a person.
+     *
+     * @return integer
+     */
     public int getAge() {
         LocalDate current = LocalDate.now();
 
