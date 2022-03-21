@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
@@ -11,9 +10,12 @@ public class Main {
 
         MapIterator<Integer, String> it = new MapIterator<>(map);
 
+        it.next();
+        it.remove();
         while (it.hasNext())
         {
             System.out.println(it.next());
         }
+        it.remove();
     }
 }

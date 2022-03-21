@@ -1,12 +1,9 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 public class MapIterator <K, V> {
     private final HashMap<K, V> data;
-
-    private final Set<K> keysOfMap;
     private final Iterator<K> it;
 
     private boolean isNextCalled = false;
@@ -14,8 +11,7 @@ public class MapIterator <K, V> {
 
     public MapIterator(HashMap<K, V> map) {
         this.data = map;
-        this.keysOfMap = map.keySet();
-        this.it = keysOfMap.iterator();
+        this.it = map.keySet().iterator();
     }
 
     public String next() {
