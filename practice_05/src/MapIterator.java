@@ -14,7 +14,7 @@ public class MapIterator <K, V> {
         this.it = map.keySet().iterator();
     }
 
-    public String next() {
+    public V next() {
         if (!it.hasNext()) {
             throw new NoSuchElementException("No such an element");
         }
@@ -23,7 +23,7 @@ public class MapIterator <K, V> {
         isNextCalled = true;
         isRemoveCalled = false;
 
-        return data.get(temp).toString();
+        return data.get(temp);
     }
 
     public boolean hasNext() {
