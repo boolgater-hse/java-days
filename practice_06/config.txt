@@ -1,0 +1,4 @@
+# Building & Elevator config
+elevator 3
+floor 10
+capacity 5
