@@ -1,10 +1,6 @@
 public class ElevatorEvent {
     public enum Directions {
-        UP, DOWN, NULL
-        /* NULL is needed to mark
-           already checked Events
-           in order to remove them
-           in future */
+        UP, DOWN
     }
 
     private final int destination;

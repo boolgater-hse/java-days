@@ -73,7 +73,7 @@ public class Elevator implements Runnable {
                                 /*
                                     Mark taken ElevatorEvents in order to delete them in future
                                  */
-                                i.setDirection(ElevatorEvent.Directions.NULL);
+                                i.setDirection(null);
                                 ++passengers;
                                 if (passengers == capacity) {
                                     break;
@@ -84,7 +84,7 @@ public class Elevator implements Runnable {
                           Deleting marked earlier Events
                          */
                         queue.removeIf(value ->
-                                value.getDirection() == ElevatorEvent.Directions.NULL);
+                                value.getDirection() == null);
                         /*
                           Some of taken Events can be closer than the main target
                           So, we're checking our PQ to make sure that we'll visit the nearest floor
@@ -104,7 +104,7 @@ public class Elevator implements Runnable {
                         for (ElevatorEvent i : queue) {
                             if (i.getDirection() == ElevatorEvent.Directions.DOWN) {
                                 this.tasks.add(i);
-                                i.setDirection(ElevatorEvent.Directions.NULL);
+                                i.setDirection(null);
                                 ++passengers;
                                 if (passengers == capacity) {
                                     break;
@@ -112,7 +112,7 @@ public class Elevator implements Runnable {
                             }
                         }
                         queue.removeIf(value ->
-                                value.getDirection() == ElevatorEvent.Directions.NULL);
+                                value.getDirection() == null);
                         to = (this.tasks.isEmpty()) ? to : this.tasks.peek().getDestination();
                         building.getFloor(currentFloor).setApproachingElevator(-1);
                     }
