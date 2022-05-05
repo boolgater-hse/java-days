@@ -157,6 +157,11 @@ public class Elevator implements Runnable {
                 building.getFloor(pickUpFloor).setApproachingElevator(-1);
             } else {
                 int deliverFloor = tasks.peek().getDestination();
+                while (!tasks.isEmpty() && deliverFloor == currentFloor) {
+                    tasks.poll();
+                    --passengers;
+                    deliverFloor = tasks.peek() != null ? tasks.peek().getDestination() : deliverFloor;
+                }
                 moveElevator(deliverFloor);
                 tasks.poll();
                 --passengers;
