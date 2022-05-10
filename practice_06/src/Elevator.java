@@ -162,6 +162,9 @@ public class Elevator implements Runnable {
                     tasks.poll();
                     --passengers;
                 }
+                if (tasks.isEmpty()) {
+                    continue;
+                }
                 moveElevator(deliverFloor);
                 tasks.poll();
                 --passengers;
