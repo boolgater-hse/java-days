@@ -23,10 +23,10 @@ public class Elevator implements Runnable {
         this.id = counter++;
         this.capacity = capacity;
         /*
-            PQ stores future tasks for elevator.
-            To select the next target floor we'll use greedy-like algorithm.
-            Given current floor PQ stores at the top the closest floor to go.
-            This way, every time we need to deliver next passenger we will pick top of the PQ (the closest floor).
+          PQ stores future tasks for elevator.
+          To select the next target floor we'll use greedy-like algorithm.
+          Given current floor PQ stores at the top the closest floor to go.
+          This way, every time we need to deliver next passenger we will pick top of the PQ (the closest floor).
          */
         this.tasks = new PriorityQueue<>((event1, event2) ->
                 Math.abs(currentFloor - event1.getDestination()) - Math.abs(currentFloor - event2.getDestination()));
@@ -71,7 +71,7 @@ public class Elevator implements Runnable {
                             if (i.getDirection() == ElevatorEvent.Directions.UP) {
                                 this.tasks.add(i);
                                 /*
-                                    Mark taken ElevatorEvents in order to delete them in future
+                                  Mark taken ElevatorEvents in order to delete them in future
                                  */
                                 i.setDirection(null);
                                 ++passengers;
@@ -157,10 +157,10 @@ public class Elevator implements Runnable {
                 building.getFloor(pickUpFloor).setApproachingElevator(-1);
             } else {
                 int deliverFloor = tasks.peek().getDestination();
-                while (!tasks.isEmpty() && deliverFloor == currentFloor) {
+                while (!tasks.isEmpty() && (deliverFloor = tasks.peek().getDestination()) == currentFloor)
+                {
                     tasks.poll();
                     --passengers;
-                    deliverFloor = tasks.peek() != null ? tasks.peek().getDestination() : deliverFloor;
                 }
                 moveElevator(deliverFloor);
                 tasks.poll();
