@@ -55,7 +55,7 @@ public class Main {
         JSONObject pages = query.getJSONObject("pages");
         for (String key : pages.keySet()) {
             if (key.equals("-1")) {
-                System.out.println("Nothing found");
+                System.out.println("Ничего не найдено");
                 break;
             }
             JSONObject page = pages.getJSONObject(key);
