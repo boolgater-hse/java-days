@@ -29,6 +29,11 @@ public class BuildingLogger implements Runnable {
             System.out.println("Max number of waiters was " + maxWaiting);
 
             System.out.println("Press 'q' + Enter to stop simulation");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
             System.out.print("\033[H\033[2J");
         }
         System.out.print("\033[H\033[2J");
